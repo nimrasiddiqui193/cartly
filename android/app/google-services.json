@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "903631250330",
+    "project_id": "cartly-ff46b",
+    "storage_bucket": "cartly-ff46b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903631250330:android:0653144523818a29f01023",
+        "android_client_info": {
+          "package_name": "com.example.cartly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903631250330-healko9haqfet14vodtcf831e00f2k3e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHgN7w-Kxnm7dL78IVmu5x0MdcYE-qB7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903631250330-healko9haqfet14vodtcf831e00f2k3e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "903631250330-u7ikjuhshkedir57m2o0nska3dmrfus5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cartly"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
