@@ -1,16 +1,63 @@
-# cartly
+# 🛍️ Cartly – Flutter E-Commerce App
 
-A new Flutter project.
+A modern e-commerce mobile application built with Flutter and Firebase.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+- User authentication
+- Browse products and categories
+- Product search
+- Shopping cart
+- Wishlist
+- Checkout and orders
+- User profile and address management
+- Light and dark themes
+- Modern, responsive user interface
 
-A few resources to get you started if this is your first Flutter project:
+## 🛠️ Technologies Used
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter
+- Dart
+- Firebase
+- Cloud Firestore
+- Firebase Authentication
+- Riverpod
+- GoRouter
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📱 Screenshots
+
+Screenshots of the application will be displayed here.
+
+## 🚀 Getting Started
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/nimrasiddiqui193/cartly.git
+   ```
+
+2. Open the project directory:
+
+   ```bash
+   cd cartly
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   flutter pub get
+   ```
+
+4. Run the application:
+
+   ```bash
+   flutter run
+   ```
+
+## 👩‍💻 Developer
+
+Flutter Developer | Mobile Application Development
+
+## 📄 License
+
+This project is developed for portfolio and educational purposes.
