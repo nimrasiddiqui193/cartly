@@ -34,20 +34,26 @@ class CheckoutScreen extends StatelessWidget {
         .toDouble();
   }
 
+  bool get canPlaceOrder {
+    return selectedAddress != null &&
+        selectedAddress!.trim().isNotEmpty &&
+        selectedPaymentMethod != null &&
+        selectedPaymentMethod!.trim().isNotEmpty &&
+        onPlaceOrder != null;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    final backgroundColor = theme.scaffoldBackgroundColor;
-    final cardColor = theme.cardColor;
     final textColor = theme.colorScheme.onSurface;
     final secondaryColor = theme.textTheme.bodyMedium?.color?.withValues(
       alpha: 0.65,
     );
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Checkout',
@@ -58,8 +64,9 @@ class CheckoutScreen extends StatelessWidget {
         backgroundColor: darkOrange,
         foregroundColor: Colors.white,
       ),
+
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(18, 22, 18, 30),
+        padding: const EdgeInsets.fromLTRB(18, 22, 18, 25),
         children: [
           _buildProgressIndicator(),
           const SizedBox(height: 28),
@@ -119,7 +126,7 @@ class CheckoutScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(19),
             decoration: BoxDecoration(
-              color: cardColor,
+              color: theme.cardColor,
               borderRadius: BorderRadius.circular(18),
               boxShadow: [
                 BoxShadow(
@@ -138,6 +145,7 @@ class CheckoutScreen extends StatelessWidget {
                   secondaryColor: secondaryColor,
                 ),
                 const SizedBox(height: 15),
+
                 _summaryRow(
                   'Shipping',
                   shipping == 0 ? 'Free' : AppFormatters.formatPrice(shipping),
@@ -145,6 +153,7 @@ class CheckoutScreen extends StatelessWidget {
                   secondaryColor: secondaryColor,
                   valueColor: shipping == 0 ? Colors.green : null,
                 ),
+
                 if (discount > 0) ...[
                   const SizedBox(height: 15),
                   _summaryRow(
@@ -155,6 +164,7 @@ class CheckoutScreen extends StatelessWidget {
                     valueColor: Colors.green,
                   ),
                 ],
+
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 18),
                   child: Divider(
@@ -165,6 +175,7 @@ class CheckoutScreen extends StatelessWidget {
                     height: 1,
                   ),
                 ),
+
                 _summaryRow(
                   'Total Amount',
                   AppFormatters.formatPrice(total),
@@ -209,41 +220,69 @@ class CheckoutScreen extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 15),
+        ],
+      ),
 
-          SizedBox(
-            height: 55,
+      // Fixed bottom button: remains visible while scrolling.
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(18, 13, 18, 14),
+          decoration: BoxDecoration(
+            color: theme.scaffoldBackgroundColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: isDark ? 0.22 : 0.07),
+                blurRadius: 18,
+                offset: const Offset(0, -5),
+              ),
+            ],
+            border: Border(
+              top: BorderSide(
+                color:
+                    isDark
+                        ? Colors.white.withValues(alpha: 0.06)
+                        : Colors.grey.withValues(alpha: 0.12),
+              ),
+            ),
+          ),
+          child: SizedBox(
+            width: double.infinity,
+            height: 56,
             child: ElevatedButton(
-              onPressed:
-                  selectedAddress != null && selectedPaymentMethod != null
-                      ? onPlaceOrder
-                      : null,
+              onPressed: canPlaceOrder ? onPlaceOrder : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryOrange,
                 foregroundColor: Colors.white,
                 disabledBackgroundColor:
                     isDark ? Colors.grey.shade800 : Colors.grey.shade300,
-                disabledForegroundColor: Colors.grey.shade600,
-                elevation: 3,
-                shadowColor: primaryOrange.withValues(alpha: 0.3),
+                disabledForegroundColor:
+                    isDark ? Colors.grey.shade500 : Colors.grey.shade600,
+                elevation: canPlaceOrder ? 4 : 0,
+                shadowColor: primaryOrange.withValues(alpha: 0.35),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(16),
                 ),
               ),
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.shopping_bag_outlined, size: 20),
-                  SizedBox(width: 10),
+                  Icon(Icons.shopping_bag_rounded, size: 21),
+                  SizedBox(width: 11),
                   Text(
-                    'Place Order',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                    'Confirm Order',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.3,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
